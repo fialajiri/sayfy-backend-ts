@@ -4,7 +4,7 @@ export class NotFoundError extends CustomError {
   statusCode = 404;
 
   constructor() {
-    super("Cesta nenalezena");
+    super("Hledaný objekt nebo hledaná cesta nebyl/a nalezen/a");
 
     Object.setPrototypeOf(this, NotFoundError.prototype);
   }
