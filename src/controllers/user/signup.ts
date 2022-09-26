@@ -26,7 +26,11 @@ const signup = async (req: Request, res: Response) => {
     username,
   });
 
-  await newUser.save();
+  try {
+    await newUser.save();
+  } catch (err) {
+    throw new DatabaseConnectionError();
+  }
 
   const payload = {
     id: newUser.id,
