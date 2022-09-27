@@ -14,7 +14,7 @@ it("creates a new aktualita", async () => {
     .expect(201);
 });
 
-it("return 401 is the user is not an admin", async () => {
+it("return 401 if the user is not an admin", async () => {
   await request(app)
     .post("/api/aktualita")
     .set("Cookie", global.signin(false))

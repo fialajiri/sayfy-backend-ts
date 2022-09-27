@@ -16,7 +16,7 @@ const aktualitaValidation = [
     .trim()
     .not()
     .isEmpty()
-    .isLength({ max: 100 })
+    .isLength({ max: 150 })
     .withMessage("Nadpis nesmý být prázdný a jeho maximální délka nesmí přesáhnout 100 znaků"),
   body("perex")
     .trim()
@@ -28,7 +28,13 @@ const aktualitaValidation = [
 ];
 
 router.post("/api/aktualita", requireAdmin, aktualitaValidation, validateRequest, createAktualita);
-router.put("/api/aktualita/:aktualitaId",requireAdmin, aktualitaValidation, validateRequest, updateAktualita);
+router.put(
+  "/api/aktualita/:aktualitaId",
+  requireAdmin,
+  aktualitaValidation,
+  validateRequest,
+  updateAktualita
+);
 router.get("/api/aktualita", getAktuality);
 router.get("/api/aktualita/:aktualitaId", getAktualitaById);
 router.delete("/api/aktualita/:aktualitaId", requireAdmin, deleteAktualita);

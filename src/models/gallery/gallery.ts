@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { normalizeStringToUrl } from "../../utils/string-utils";
 
 export interface GalleryAttrs {
   title: string;
@@ -24,7 +25,7 @@ const gallerySchema = new mongoose.Schema(
     galleryUrl: {
       type: String,
       default: function () {
-        const _t = this as any;
+        const _t = this as any;        
         return normalizeStringToUrl(_t.title);
       },
     },

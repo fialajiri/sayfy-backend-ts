@@ -24,7 +24,5 @@ it("can fetch a list of aktuality", async () => {
 
   const { body: aktuality } = await request(app).get("/api/aktualita").send().expect(200);
 
-  console.log(aktuality);
-
   expect(aktuality.length).toEqual(2);
 });

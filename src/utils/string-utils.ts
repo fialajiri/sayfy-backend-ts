@@ -1,4 +1,4 @@
-const normalizeStringToUrl = (str: string) => {
+export const normalizeStringToUrl = (str: string) => {
   return str
     .toLowerCase()
     .normalize("NFD")
