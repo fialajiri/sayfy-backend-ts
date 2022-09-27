@@ -24,10 +24,10 @@ const updateAktualita = async (req: Request, res: Response) => {
   try {
     await aktualita.save();
   } catch (err) {
-    throw new DatabaseConnectionError();
+    throw new DatabaseConnectionError("Aktualitu se nepodařilo updatovat");
   }
 
   res.status(200).send(aktualita);
 };
 
-export default updateAktualita
+export default updateAktualita;
