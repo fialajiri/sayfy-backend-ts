@@ -46,6 +46,12 @@ const staticPageSchema = new mongoose.Schema(
   }
 );
 
+staticPageSchema.pre("save", async function (done) {
+  if (this.isModified("title")) {
+    this.set("staticPageUrl", normalizeStringToUrl(this.get("title")));
+  }
+});
+
 staticPageSchema.statics.build = (attrs: StaticPageAttrs) => {
   return new StaticPage(attrs);
 };

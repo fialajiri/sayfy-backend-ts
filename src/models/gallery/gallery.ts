@@ -25,7 +25,7 @@ const gallerySchema = new mongoose.Schema(
     galleryUrl: {
       type: String,
       default: function () {
-        const _t = this as any;        
+        const _t = this as any;
         return normalizeStringToUrl(_t.title);
       },
     },
@@ -39,6 +39,12 @@ const gallerySchema = new mongoose.Schema(
     },
   }
 );
+
+gallerySchema.pre("save", async function (done) {
+  if (this.isModified("title")) {
+    this.set("galleryUrl", normalizeStringToUrl(this.get("title")));
+  }
+});
 
 gallerySchema.statics.build = (attrs: GalleryDoc) => {
   return new Gallery(attrs);

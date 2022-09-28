@@ -4,7 +4,7 @@ import { app } from "../../../app";
 it("return 404 if the provided param does not exists", async () => {
   const staticPageUrl = "this-shloud-not-exits";
 
-  await request(app).get(`/api/static-page/${staticPageUrl}`).send().expect(200);
+  await request(app).get(`/api/static-page/${staticPageUrl}`).send().expect(404);
 });
 
 it("returns 200 and fetches static page provided valid static page id", async () => {
@@ -23,8 +23,6 @@ it("returns 200 and fetches static page provided valid static page id", async ()
     .get(`/api/static-page/${staticPage.id}`)
     .send()
     .expect(200);
-
-  console.log(fetchedStaticPage);
 
   expect(fetchedStaticPage).not.toBeNull();
 });
@@ -45,8 +43,6 @@ it("returns 200 and fetches a static page provided a valid static page url", asy
     .get(`/api/static-page/${staticPage.staticPageUrl}`)
     .send()
     .expect(200);
-
-  console.log(fetchedStaticPage);
 
   expect(fetchedStaticPage).not.toBeNull();
 });

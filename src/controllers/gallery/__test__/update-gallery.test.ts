@@ -102,6 +102,4 @@ it("updates the gallery provided valid inputs", async () => {
       images: ["new-image1-path.jpg", "new-image2-path.jpg"],
     })
     .expect(200);
-
-    console.log(updatedGallery)
 });
