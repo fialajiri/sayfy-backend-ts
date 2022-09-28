@@ -10,6 +10,7 @@ import { currentUser } from "./middlewares/current-user";
 import { userRoutes } from "./routes/user-routes";
 import { aktualitaRoutes } from "./routes/aktualita-routes";
 import { galleryRoutes } from "./routes/gallery-routes";
+import { staticPageRoutes } from "./routes/static-page-routes";
 
 const app = express();
 
@@ -22,6 +23,7 @@ app.use(currentUser);
 app.use(userRoutes);
 app.use(aktualitaRoutes)
 app.use(galleryRoutes)
+app.use(staticPageRoutes)
 
 app.all("*", () => {
   throw new NotFoundError();

@@ -12,7 +12,7 @@ it("creates a new gallery", async () => {
     .expect(201);
 });
 
-it("returns 401 if the user is not admin", async () => {
+it("returns 401 if the user is not an admin", async () => {
   await request(app)
     .post("/api/gallery")
     .set("Cookie", global.signin(false))
@@ -45,7 +45,7 @@ it("returns 400 when the title is too long (over 150 characters)", async () => {
     .expect(400);
 });
 
-it("the saved gallery contains an valid gallery url attribute", async () => {
+it("confirms that the saved gallery contains an valid gallery url attribute", async () => {
   const { body: savedGallery } = await request(app)
     .post("/api/gallery")
     .set("Cookie", global.signin(true))

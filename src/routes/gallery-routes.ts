@@ -1,5 +1,5 @@
 import express from "express";
-import { body, CustomValidator } from "express-validator";
+import { body, CustomValidator, } from "express-validator";
 
 import { requireAdmin } from "../middlewares/require-admin";
 import { validateRequest } from "../middlewares/validate-request";
@@ -13,9 +13,10 @@ import { Gallery } from "../models/gallery/gallery";
 
 const router = express.Router();
 
-const isTitleUnique: CustomValidator = async (value) => {
+const isTitleUnique: CustomValidator = async (value, { req }) => {
+  const galleryId: string | undefined = req.params?.galleryId;
   const gallery = await Gallery.findOne({ title: value });
-  if (gallery) {
+  if (gallery && (gallery._id.toHexString() !== galleryId || galleryId === undefined)) {
     return Promise.reject("Název gallerie musí být unikátní");
   }
 };
@@ -25,7 +26,13 @@ const galleryValidation = [
 ];
 
 router.post("/api/gallery", requireAdmin, galleryValidation, validateRequest, createGallery);
-router.put("/api/gallery", requireAdmin, galleryValidation, validateRequest, updateGallery);
+router.put(
+  "/api/gallery/:galleryId",
+  requireAdmin,
+  galleryValidation,
+  validateRequest,
+  updateGallery
+);
 router.get("/api/gallery/:galleryUrl", getGalleryByUrl);
 router.get("/api/gallery", getGalleries);
 router.delete("/api/gallery/:galleryId", deleteGallery);

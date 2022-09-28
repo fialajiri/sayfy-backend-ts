@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { normalizeStringToUrl } from "../../utils/string-utils";
 
 export interface StaticPageAttrs {
   title: string;
@@ -15,6 +16,7 @@ export interface StaticPageDoc extends mongoose.Document {
   title: string;
   peres: string;
   text: string;
+  staticPageUrl: string;
   assets: string[];
   updatedAt: Date;
   createdAt: Date;
@@ -26,6 +28,13 @@ const staticPageSchema = new mongoose.Schema(
     perex: { type: String },
     text: { type: String },
     assets: [{ type: String }],
+    staticPageUrl: {
+      type: String,
+      default: function () {
+        const _t = this as any;
+        return normalizeStringToUrl(_t.title);
+      },
+    },
   },
   {
     timestamps: true,
