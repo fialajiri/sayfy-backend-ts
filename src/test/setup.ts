@@ -13,6 +13,7 @@ beforeAll(async () => {
   process.env.JWT_EXPIRY = "1000";
   process.env.REFRESH_TOKEN_EXPIRY = "1000";
   process.env.COOKIE_SECRET = "cookie_secret";
+  
 
   replset = await MongoMemoryReplSet.create({
     replSet: { storageEngine: "wiredTiger" },

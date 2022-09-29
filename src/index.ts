@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 import { app } from "./app";
 
 const PORT: string | number = process.env.PORT || 5000;
-const mongoDbUrl = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster0.oahmw.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`;
+export const mongoDbUrl = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster0.oahmw.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`;
 
 const start = async () => {
   if (

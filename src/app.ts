@@ -11,6 +11,7 @@ import { userRoutes } from "./routes/user-routes";
 import { aktualitaRoutes } from "./routes/aktualita-routes";
 import { galleryRoutes } from "./routes/gallery-routes";
 import { staticPageRoutes } from "./routes/static-page-routes";
+import { requestLogger } from "./middlewares/logger";
 
 const app = express();
 
@@ -20,10 +21,11 @@ app.use(cors(CORS_OPTIONS));
 
 app.use(currentUser);
 
+app.use(requestLogger);
 app.use(userRoutes);
-app.use(aktualitaRoutes)
-app.use(galleryRoutes)
-app.use(staticPageRoutes)
+app.use(aktualitaRoutes);
+app.use(galleryRoutes);
+app.use(staticPageRoutes);
 
 app.all("*", () => {
   throw new NotFoundError();
