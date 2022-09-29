@@ -12,7 +12,7 @@ export interface LogAttrs {
   requestBody?: string;
   sendData?: string;
   error?: {
-    errorMsg?: string;
+    message: string;
     errorFields?: string;
   }[];
 }
@@ -32,7 +32,7 @@ export interface LogDoc extends mongoose.Document {
   requestBody: string;
   sendData: string;
   error: {
-    errorMsg: string;
+    message: string;
     errorFields: string;
   }[];
   udpatedAt: Date;
@@ -56,7 +56,7 @@ const logSchema = new mongoose.Schema(
     sendData: { type: String },
     error: [
       {
-        errorMsg: { type: String },
+        message: { type: String },
         errorFields: { type: String },
       },
     ],

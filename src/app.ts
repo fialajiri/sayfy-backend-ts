@@ -20,8 +20,8 @@ app.use(cookieParser());
 app.use(cors(CORS_OPTIONS));
 
 app.use(currentUser);
-
 app.use(requestLogger);
+
 app.use(userRoutes);
 app.use(aktualitaRoutes);
 app.use(galleryRoutes);

@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import { CustomError } from "../errors/custom-errors";
 import { logger } from "../logs/winston/logger";
+import { LogAttrs } from "../models/log/log";
 
 export const errorHanlder = (err: Error, req: Request, res: Response, next: NextFunction) => {
   if (err instanceof CustomError) {

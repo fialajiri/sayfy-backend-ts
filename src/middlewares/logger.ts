@@ -12,6 +12,10 @@ export const requestLogger = (req: Request, res: Response, next: NextFunction) =
     ip: req.headers["x-forwarded-for"] || req.socket.remoteAddress,
   };
 
+  if(req.body.password){
+    delete logMessage.requestBody
+  }
+
   logger.info(logMessage);
 
   next();
