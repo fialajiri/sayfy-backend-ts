@@ -8,7 +8,7 @@ class MongoDbTransport extends Transport {
     super(options);
   }
 
-  public async log(info: any, next: () => void) {    
+  public async log(info: any, next: () => void) {        
     const message = { level: info.level, ...info.message } as LogAttrs;
 
     const newLog = Log.build(message);

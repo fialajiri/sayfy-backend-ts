@@ -12,6 +12,7 @@ import { aktualitaRoutes } from "./routes/aktualita-routes";
 import { galleryRoutes } from "./routes/gallery-routes";
 import { staticPageRoutes } from "./routes/static-page-routes";
 import { requestLogger } from "./middlewares/logger";
+import { uploadRoutes } from "./routes/upload-routes";
 
 const app = express();
 
@@ -22,6 +23,7 @@ app.use(cors(CORS_OPTIONS));
 app.use(currentUser);
 app.use(requestLogger);
 
+app.use(uploadRoutes)
 app.use(userRoutes);
 app.use(aktualitaRoutes);
 app.use(galleryRoutes);

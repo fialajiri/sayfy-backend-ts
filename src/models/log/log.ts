@@ -10,7 +10,7 @@ export interface LogAttrs {
   responseTime?: string;
   ip?: string | string[];
   requestBody?: string;
-  sendData?: string;
+  sendData?: object;
   error?: {
     message: string;
     errorFields?: string;
@@ -30,7 +30,7 @@ export interface LogDoc extends mongoose.Document {
   responseTime: string;
   ip: string;
   requestBody: string;
-  sendData: string;
+  sendData: object;
   error: {
     message: string;
     errorFields: string;
@@ -53,7 +53,7 @@ const logSchema = new mongoose.Schema(
     responseTime: { type: String },
     ip: { type: String },
     requestBody: { type: String },
-    sendData: { type: String },
+    sendData: { type: Object },
     error: [
       {
         message: { type: String },
