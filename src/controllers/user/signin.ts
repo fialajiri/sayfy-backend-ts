@@ -23,6 +23,7 @@ const signin = async (req: Request, res: Response) => {
     throw new BadRequestError("Neplatné přístupové údaje");
   }
 
+  
   const passwordMatch = await Password.compare(existingUser.password, password);
 
   if (!passwordMatch) {
@@ -37,7 +38,9 @@ const signin = async (req: Request, res: Response) => {
 
   const userJwt = jwtService.getToken(payload);
 
-  res.status(200).cookie("jwt", userJwt, COOKIE_OPTIONS).send(existingUser);
+  
+
+  res.status(200).cookie("jwt", userJwt, COOKIE_OPTIONS).send(payload);
 };
 
 export default signin;

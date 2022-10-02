@@ -10,11 +10,7 @@ declare global {
   }
 }
 
-export const currentUser = (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
+export const currentUser = (req: Request, res: Response, next: NextFunction) => {
   const { cookies = {} } = req;
   let { jwt } = cookies;
 
@@ -27,7 +23,7 @@ export const currentUser = (
 
   try {
     const payload = jwtService.verifyUser(jwt);
-    req.currentUser = payload;
+    req.currentUser = payload;    
   } catch (err) {}
 
   next();

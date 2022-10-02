@@ -5,7 +5,7 @@ export const requireAdmin = (
   req: Request,
   res: Response,
   next: NextFunction
-) => {
+) => {  
   if (!req.currentUser?.isAdmin) {
     throw new NotAuthorizedError();
   }
