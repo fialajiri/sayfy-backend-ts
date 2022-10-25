@@ -68,7 +68,7 @@ it("confirms that the saved static page contains an valid gallery url attribute"
   expect(staticPage.staticPageUrl).toBeDefined();
 });
 
-it("returns an error when the static page titile is not unique", async () => {
+it("returns an error when the static page title is not unique", async () => {
   await request(app)
     .post("/api/static-page")
     .set("Cookie", global.signin(true))

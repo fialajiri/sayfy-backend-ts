@@ -26,8 +26,6 @@ const uploadImage = async (req: Request, res: Response) => {
 
   const key = `${filePath}-${uuidv4()}.${fileExtension}`;
 
-  console.log(key)
-
   // const s3Params = {
   //   Bucket: process.env.AWS_S3_BUCKET_NAME,
   //   ContentType: fileType,

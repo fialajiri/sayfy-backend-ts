@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { normalizeStringToUrl } from "../../utils/string-utils";
 
 export interface AktualitaAttrs {
   title: string;
@@ -6,8 +7,7 @@ export interface AktualitaAttrs {
   text: string;
   mainPhoto: string;
   photoGallery: string[];
-  video: string;
-  imagesFromEditor: string[];
+  filesFromEditor: string[];
 }
 
 interface AktualitaModel extends mongoose.Model<AktualitaDoc> {
@@ -19,9 +19,9 @@ export interface AktualitaDoc extends mongoose.Document {
   perex: string;
   text: string;
   mainPhoto: string;
+  aktualitaUrl: string;
   photoGallery: string[];
-  video: string;
-  imagesFromEditor: string[];
+  filesFromEditor: string[];
   updatedAt: Date;
   createdAt: Date;
 }
@@ -33,8 +33,14 @@ const aktualitaSchema = new mongoose.Schema(
     text: { type: String },
     mainPhoto: { type: String, required: true },
     photoGallery: [{ type: String }],
-    video: { type: String },
-    imagesFromEditor: [{ type: String }],
+    filesFromEditor: [{ type: String }],
+    aktualitaUrl: {
+      type: String,
+      default: function () {
+        const _t = this as any;
+        return normalizeStringToUrl(_t.title);
+      },
+    },
   },
   {
     timestamps: true,
@@ -45,6 +51,12 @@ const aktualitaSchema = new mongoose.Schema(
     },
   }
 );
+
+aktualitaSchema.pre("save", async function (done) {
+  if (this.isModified("title")) {
+    this.set("staticPageUrl", normalizeStringToUrl(this.get("title")));
+  }
+});
 
 aktualitaSchema.statics.build = (attrs: AktualitaAttrs) => {
   return new Aktualita(attrs);
