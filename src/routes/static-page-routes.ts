@@ -10,29 +10,26 @@ import { StaticPage } from "../models/static-page/static-page";
 
 const router = express.Router();
 
-const isTitleUnique: CustomValidator = async (value, { req }) => {
-  const staticPageId: string | undefined = req.params?.galleryId;
-  const staticPage = await StaticPage.findOne({ title: value });
-  if (staticPage && (staticPage._id.toHexString() !== staticPageId || staticPageId === undefined)) {
-    return Promise.reject("Název statické stránky musí být unikátní");
-  }
-};
-
-const staticPageValidaton = [
-  body("title").trim().not().isEmpty().isLength({ max: 150 }).custom(isTitleUnique),
+const staticPageValidation = [
+  body("title")
+    .trim()
+    .not()
+    .isEmpty()
+    .isLength({ max: 150 })
+    .withMessage("Nadpis nesmý být prázdný a jeho maximální délka nesmí přesáhnout 150 znaků"),
 ];
 
 router.post(
   "/api/static-page",
   requireAdmin,
-  staticPageValidaton,
+  staticPageValidation,
   validateRequest,
   createStaticPage
 );
 router.put(
   "/api/static-page/:staticPageId",
   requireAdmin,
-  staticPageValidaton,
+  staticPageValidation,
   validateRequest,
   updateStaticPage
 );

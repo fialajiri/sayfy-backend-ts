@@ -12,8 +12,7 @@ it("returns 200 and fetches static page provided valid static page id", async ()
     .post("/api/static-page")
     .set("Cookie", global.signin(true))
     .send({
-      title: "This is the static page title",
-      perex: "This is perex",
+      title: "This is the static page title",     
       text: "This is text",
       assets: ["image1-path", "document1-path"],
     })
@@ -32,8 +31,7 @@ it("returns 200 and fetches a static page provided a valid static page url", asy
     .post("/api/static-page")
     .set("Cookie", global.signin(true))
     .send({
-      title: "This is the static page title",
-      perex: "This is perex",
+      title: "This is the static page title",     
       text: "This is text",
       assets: ["image1-path", "document1-path"],
     })

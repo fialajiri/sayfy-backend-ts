@@ -3,11 +3,10 @@ import { DatabaseConnectionError } from "../../errors/database-connection-error"
 import { StaticPage } from "../../models/static-page/static-page";
 
 const createStaticPage = async (req: Request, res: Response) => {
-  const { title, perex, text, assets } = req.body;
+  const { title, text, assets } = req.body;
 
   const newStaticPage = StaticPage.build({
     title,
-    perex,
     text,
     assets,
   });

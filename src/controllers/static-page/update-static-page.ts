@@ -5,7 +5,7 @@ import { StaticPage, StaticPageDoc } from "../../models/static-page/static-page"
 
 const updateStaticPage = async (req: Request, res: Response) => {
   const { staticPageId } = req.params;
-  const { title, perex, text, assets } = req.body;
+  const { title, text, assets } = req.body;
 
   let staticPage: (StaticPageDoc & { _id: any }) | null;
 
@@ -19,7 +19,7 @@ const updateStaticPage = async (req: Request, res: Response) => {
     throw new NotFoundError();
   }
 
-  staticPage.set({ title, perex, text, assets });
+  staticPage.set({ title, text, assets });
 
   try {
     await staticPage.save();
