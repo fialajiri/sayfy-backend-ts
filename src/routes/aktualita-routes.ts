@@ -13,10 +13,10 @@ import { Aktualita } from "../models/aktualita/aktualita";
 const router = express.Router();
 
 const isTitleUnique: CustomValidator = async (value, { req }) => {
-  const staticPageId: string | undefined = req.params?.galleryId;
+  const staticPageId: string | undefined = req.params?.aktualitaId;
   const staticPage = await Aktualita.findOne({ title: value });
   if (staticPage && (staticPage._id.toHexString() !== staticPageId || staticPageId === undefined)) {
-    return Promise.reject("Název statické stránky musí být unikátní");
+    return Promise.reject("Název aktuality stránky musí být unikátní");
   }
 };
 
