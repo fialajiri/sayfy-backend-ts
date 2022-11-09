@@ -9,19 +9,19 @@ import signout from "../controllers/user/signout";
 
 const router = express.Router();
 
-router.post(
-  "/api/users/signup",
-  [
-    body("email").isEmail().withMessage("Zadejte platný email"),
-    body("password").trim().notEmpty().withMessage("Heslo nesmí být prázdné"),
-    body("username")
-      .trim()
-      .isLength({ min: 1, max: 100 })
-      .withMessage("Uživatelské jméno nesmí být prázdné. Maximální délka je 100 znaků"),
-  ],
-  validateRequest,
-  signup
-);
+// router.post(
+//   "/api/users/signup",
+//   [
+//     body("email").isEmail().withMessage("Zadejte platný email"),
+//     body("password").trim().notEmpty().withMessage("Heslo nesmí být prázdné"),
+//     body("username")
+//       .trim()
+//       .isLength({ min: 1, max: 100 })
+//       .withMessage("Uživatelské jméno nesmí být prázdné. Maximální délka je 100 znaků"),
+//   ],
+//   validateRequest,
+//   signup
+// );
 
 router.post(
   "/api/users/signin",
