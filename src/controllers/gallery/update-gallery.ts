@@ -2,10 +2,13 @@ import { Request, Response } from "express";
 import { DatabaseConnectionError } from "../../errors/database-connection-error";
 import { NotFoundError } from "../../errors/not-found-error";
 import { Gallery, GalleryDoc } from "../../models/gallery/gallery";
+import { deleteFileFromS3 } from "../../utils/delete-file-from-s3";
 
 const updateGallery = async (req: Request, res: Response) => {
   const { galleryId } = req.params;
-  const { title, images } = req.body;
+  const { title, images: newImages } = req.body;
+
+  
 
   let gallery: (GalleryDoc & { _id: any }) | null;
 
@@ -19,7 +22,15 @@ const updateGallery = async (req: Request, res: Response) => {
     throw new NotFoundError();
   }
 
-  gallery.set({ title, images });
+  const existingImages = gallery.images;
+  const imagesToDelete = existingImages.filter((img) => !newImages.includes(img));
+
+  for(const image of imagesToDelete){
+    await deleteFileFromS3(image)
+    
+  }
+
+  gallery.set({ title, images:newImages });
 
   try {
     await gallery.save();
@@ -30,4 +41,4 @@ const updateGallery = async (req: Request, res: Response) => {
   res.status(200).send(gallery);
 };
 
-export default updateGallery
+export default updateGallery;
