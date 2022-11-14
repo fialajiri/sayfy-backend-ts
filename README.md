@@ -1,6 +1,7 @@
 # [Sayfyho Memorial - backend](https://sayfy-frontend-ts.vercel.app/)
 
 ## CZ  
+hello
 
 ### Obecné informace
 Tento projekt tvoří backend k webové aplikaci Sayfyho memorial. Webová aplikace umožňuje pořadatelům propagaci závodu, vkládání novinek a fotografií. Mezi hlavní vlastnost patří:
