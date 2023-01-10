@@ -41,8 +41,7 @@ it("returns 400 with missing main photo input", async () => {
     .post("/api/aktualita")
     .set("Cookie", global.signin(true))
     .send({
-      title: "This is news title",
-      perex: "This is news perex.",
+      title: "This is news title",      
     })
     .expect(400);
 });

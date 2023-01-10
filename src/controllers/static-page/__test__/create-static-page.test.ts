@@ -6,8 +6,7 @@ it("creates a new static page", async () => {
     .post("/api/static-page")
     .set("Cookie", global.signin(true))
     .send({
-      title: "This is the static page title",
-      perex: "This is perex",
+      title: "This is the static page title",     
       text: "This is text",
       assets: ["image1-path", "document1-path"],
     })
