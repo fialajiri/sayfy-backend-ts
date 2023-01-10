@@ -6,8 +6,7 @@ it("creates a new aktualita", async () => {
     .post("/api/aktualita")
     .set("Cookie", global.signin(true))
     .send({
-      title: "This is news title",
-      perex: "This is news perex.",
+      title: "This is news title",     
       mainPhoto: "main-photo.jpg",
     })
     .expect(201);
@@ -18,8 +17,7 @@ it("return 401 if the user is not an admin", async () => {
     .post("/api/aktualita")
     .set("Cookie", global.signin(false))
     .send({
-      title: "This is news title",
-      perex: "This is news perex.",
+      title: "This is news title",     
       mainPhoto: "main-photo.jpg",
     })
     .expect(401);
@@ -30,35 +28,13 @@ it("return 400 with missing title input", async () => {
     .post("/api/aktualita")
     .set("Cookie", global.signin(true))
     .send({
-      perex: "This is news perex.",
+     
       mainPhoto: "main-photo.jpg",
     })
     .expect(400);
 });
 
-it("return 400 with missing perex input", async () => {
-  await request(app)
-    .post("/api/aktualita")
-    .set("Cookie", global.signin(true))
-    .send({
-      title: "This is news title",
-      mainPhoto: "main-photo.jpg",
-    })
-    .expect(400);
-});
 
-it("returns 400 with perex too long (over 500 characters)", async () => {
-  await request(app)
-    .post("/api/aktualita")
-    .set("Cookie", global.signin(true))
-    .send({
-      title: "This is news title",
-      perex:
-        "This perex is loo long. This perex is loo long. This perex is loo long. This perex is loo long. This perex is loo long. This perex is loo long. This perex is loo long. This perex is loo long. This perex is loo long. This perex is loo long. This perex is loo long. This perex is loo long. This perex is loo long. This perex is loo long. This perex is loo long. This perex is loo long. This perex is loo long. This perex is loo long. This perex is loo long. This perex is loo long. This perex is loo long. This perex is loo long. This perex is loo long. This perex is loo long. This perex is loo long.",
-      mainPhoto: "main-photo.jpg",
-    })
-    .expect(400);
-});
 
 it("returns 400 with missing main photo input", async () => {
   await request(app)
@@ -76,8 +52,7 @@ it("returns an error when the aktualita title is not unique", async () => {
     .post("/api/aktualita")
     .set("Cookie", global.signin(true))
     .send({
-      title: "This is news title",
-      perex: "This is news perex.",
+      title: "This is news title",    
       mainPhoto: "main-photo.jpg",
     })
     .expect(201);
@@ -86,8 +61,7 @@ it("returns an error when the aktualita title is not unique", async () => {
     .post("/api/aktualita")
     .set("Cookie", global.signin(true))
     .send({
-      title: "This is news title",
-      perex: "This is news perex.",
+      title: "This is news title",     
       mainPhoto: "main-photo.jpg",
     })
     .expect(400);

@@ -16,8 +16,7 @@ it("deletes an aktualita", async () => {
     .post("/api/aktualita")
     .set("Cookie", global.signin(true))
     .send({
-      title: "This is news title",
-      perex: "This is news perex.",
+      title: "This is news title",     
       mainPhoto: "main-photo.jpg",
     })
     .expect(201);

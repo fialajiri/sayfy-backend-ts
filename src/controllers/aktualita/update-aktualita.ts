@@ -5,7 +5,7 @@ import { Aktualita, AktualitaDoc } from "../../models/aktualita/aktualita";
 
 const updateAktualita = async (req: Request, res: Response) => {
   const { aktualitaId } = req.params;
-  const { title, perex, text, mainPhoto, photoGallery, video, imagesFromEditor } = req.body;
+  const { title, text, mainPhoto, photoGallery, video, imagesFromEditor } = req.body;
 
   let aktualita: (AktualitaDoc & { _id: any }) | null;
 
@@ -19,7 +19,7 @@ const updateAktualita = async (req: Request, res: Response) => {
     throw new NotFoundError();
   }
 
-  aktualita.set({ title, perex, text, mainPhoto, photoGallery, video, imagesFromEditor });
+  aktualita.set({ title, text, mainPhoto, photoGallery, video, imagesFromEditor });
 
   try {
     await aktualita.save();

@@ -27,13 +27,7 @@ const aktualitaValidation = [
     .isEmpty()
     .isLength({ max: 150 })
     .withMessage("Nadpis nesmý být prázdný a jeho maximální délka nesmí přesáhnout 150 znaků")
-    .custom(isTitleUnique),
-  body("perex")
-    .trim()
-    .not()
-    .isEmpty()
-    .isLength({ max: 500 })
-    .withMessage("Perex nesmý být prázdný a jeho maximální délka nesmí přesáhnout 500 znaků"),
+    .custom(isTitleUnique),  
   body("mainPhoto").not().isEmpty().withMessage("Aktualita musí mít alespoň hlavní obrázek"),
 ];
 

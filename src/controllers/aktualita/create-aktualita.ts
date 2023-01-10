@@ -3,16 +3,14 @@ import { DatabaseConnectionError } from "../../errors/database-connection-error"
 import { Aktualita } from "../../models/aktualita/aktualita";
 
 const createAktualita = async (req: Request, res: Response) => {
-  const { title, perex, text, mainPhoto, photoGallery,  filesFromEditor } = req.body;
+  const { title, text, mainPhoto, photoGallery, filesFromEditor } = req.body;
 
   const newAktualita = Aktualita.build({
     title,
-    perex,
     text,
     mainPhoto,
     photoGallery,
-  
-    filesFromEditor
+    filesFromEditor,
   });
 
   try {

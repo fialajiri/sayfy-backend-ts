@@ -6,8 +6,7 @@ it("can fetch a list of aktuality", async () => {
     .post("/api/aktualita")
     .set("Cookie", global.signin(true))
     .send({
-      title: "This is news title",
-      perex: "This is news perex.",
+      title: "This is news title",      
       mainPhoto: "main-photo.jpg",
     })
     .expect(201);
@@ -16,8 +15,7 @@ it("can fetch a list of aktuality", async () => {
     .post("/api/aktualita")
     .set("Cookie", global.signin(true))
     .send({
-      title: "This another title",
-      perex: "This another perex.",
+      title: "This another title",     
       mainPhoto: "another-main-photo.jpg",
     })
     .expect(201);

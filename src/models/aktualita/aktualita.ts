@@ -2,8 +2,7 @@ import mongoose from "mongoose";
 import { normalizeStringToUrl } from "../../utils/string-utils";
 
 export interface AktualitaAttrs {
-  title: string;
-  perex: string;
+  title: string;  
   text: string;
   mainPhoto: string;
   photoGallery: string[];
@@ -15,8 +14,7 @@ interface AktualitaModel extends mongoose.Model<AktualitaDoc> {
 }
 
 export interface AktualitaDoc extends mongoose.Document {
-  title: string;
-  perex: string;
+  title: string; 
   text: string;
   mainPhoto: string;
   aktualitaUrl: string;
@@ -28,8 +26,7 @@ export interface AktualitaDoc extends mongoose.Document {
 
 const aktualitaSchema = new mongoose.Schema(
   {
-    title: { type: String, required: true },
-    perex: { type: String, required: true },
+    title: { type: String, required: true },   
     text: { type: String },
     mainPhoto: { type: String, required: true },
     photoGallery: [{ type: String }],
