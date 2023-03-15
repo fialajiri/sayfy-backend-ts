@@ -9,7 +9,7 @@ const getAktualitaByParam = async (req: Request, res: Response) => {
 
   let aktualita: (AktualitaDoc & { _id: any }) | null;
 
-  if (mongoose.isValidObjectId(aktualitaParam)) {
+  if (aktualitaParam.match(/^[0-9a-fA-F]{24}$/)) {
     try {
       aktualita = await Aktualita.findById(aktualitaParam);
     } catch (err) {
