@@ -3,7 +3,8 @@ import { PutObjectAclCommand, S3Client, GetObjectCommand } from "@aws-sdk/client
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 import { v4 as uuidv4 } from "uuid";
 import { DatabaseConnectionError } from "../../errors/database-connection-error";
-import S3 from 'aws-sdk/clients/s3'
+import S3 from "aws-sdk/clients/s3";
+import { normalizeStringToUrl } from "../../utils/string-utils";
 
 const s3 = new S3({
   accessKeyId: process.env.AWS_S3_BUCKET_ACCESS_KEY as string,
@@ -24,7 +25,7 @@ const uploadImage = async (req: Request, res: Response) => {
 
   const fileExtension = filePath.substring(filePath.lastIndexOf(".") + 1);
 
-  const key = `${filePath}-${uuidv4()}.${fileExtension}`;
+  const key = `${normalizeStringToUrl(filePath)}-${uuidv4()}.${fileExtension}`;
 
   // const s3Params = {
   //   Bucket: process.env.AWS_S3_BUCKET_NAME,

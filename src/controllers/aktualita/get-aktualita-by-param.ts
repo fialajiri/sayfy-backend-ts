@@ -6,6 +6,7 @@ import { Aktualita, AktualitaDoc } from "../../models/aktualita/aktualita";
 
 const getAktualitaByParam = async (req: Request, res: Response) => {
   const { aktualitaParam } = req.params;
+  console.log('aktualitaParams', aktualitaParam)
 
   let aktualita: (AktualitaDoc & { _id: any }) | null;
 
@@ -17,7 +18,7 @@ const getAktualitaByParam = async (req: Request, res: Response) => {
     }
   } else {
     try {
-      aktualita = await Aktualita.findOne({ aktualitaUrl: aktualitaParam });
+      aktualita = await Aktualita.findOne({ aktualitaUrl: aktualitaParam });    
     } catch (err) {
       throw new DatabaseConnectionError();
     }
